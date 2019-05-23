@@ -6,7 +6,7 @@
 /*   By: hmenzagh <hmenzagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 16:39:04 by hmenzagh          #+#    #+#             */
-/*   Updated: 2019/05/23 18:43:10 by hmenzagh         ###   ########.fr       */
+/*   Updated: 2019/05/23 19:20:19 by hmenzagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ const { boomify } = require('boom');
 const users = {
     hugo: {
         username: 'hugo',
-        password: '3ba1994d8539fcea2a6db5845f1ae44a',
+        password: '3ba1994d8539fcea2a6db5845f1fe44a',
         name: 'Hugo',
-        id: 'hugo01'
+        id: '007'
     }
 };
 

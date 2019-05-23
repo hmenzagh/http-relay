@@ -1,4 +1,6 @@
 {
+  "name": "http-relay",
+  "version": "0.1",
   "dependencies": {
     "@hapi/basic": "^5.1.0",
     "@hapi/hapi": "^18.3.1",
