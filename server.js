@@ -6,7 +6,7 @@
 /*   By: hmenzagh <hmenzagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 16:39:04 by hmenzagh          #+#    #+#             */
-/*   Updated: 2019/05/23 17:30:01 by hmenzagh         ###   ########.fr       */
+/*   Updated: 2019/05/23 18:22:53 by hmenzagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ const axios = require('axios');
 const users = {
     hugo: {
         username: 'hugo',
-        password: '3BA1994D8539FCEA2A6DB5845F1AE44A',
+        password: '3ba1994d8539fcea2a6db5845f1ae44a',
         name: 'Hugo',
         id: 'hugo01'
     }
@@ -31,8 +31,7 @@ const validate = async (request, username, password, h) => {
     const user = users[username];
     if (!user) {
         return { credentials: null, isValid: false };
-    }
-
+	}
     const isValid = md5(password) === user.password;
     const credentials = { id: user.id, name: user.name };
 
