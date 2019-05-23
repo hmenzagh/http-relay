@@ -6,14 +6,14 @@
 /*   By: hmenzagh <hmenzagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 16:39:04 by hmenzagh          #+#    #+#             */
-/*   Updated: 2019/05/23 17:07:51 by hmenzagh         ###   ########.fr       */
+/*   Updated: 2019/05/23 17:30:01 by hmenzagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 'use strict';
 
 const Hapi = require('@hapi/hapi');
-const Joi = require('joi');
+const Joi = require('@hapi/joi');
 const md5 = require('md5');
 const axios = require('axios');
 
@@ -41,7 +41,7 @@ const validate = async (request, username, password, h) => {
 
 const init = async () => {
     const server = Hapi.server({
-        port: 3000,
+        port: 8888,
         host: 'localhost'
 	});
 
@@ -53,12 +53,14 @@ const init = async () => {
 	server.route({
         method: 'POST',
 		path:'/',
-		validate: {
-			payload: {
-				method: Joi.string().required(),
-				url: Joi.string().required(),
-				payload: Joi.object().optional(),
-				headers: Joi.object().required(),
+		config: {
+			validate: {
+				payload: {
+					method: Joi.string().required(),
+					url: Joi.string().required(),
+					payload: Joi.object().optional(),
+					headers: Joi.object().required(),
+				},
 			},
 		},
         handler: async (request, h) => {
