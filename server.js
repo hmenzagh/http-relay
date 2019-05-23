@@ -6,7 +6,7 @@
 /*   By: hmenzagh <hmenzagh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/23 16:39:04 by hmenzagh          #+#    #+#             */
-/*   Updated: 2019/05/23 18:22:53 by hmenzagh         ###   ########.fr       */
+/*   Updated: 2019/05/23 18:43:10 by hmenzagh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ const Hapi = require('@hapi/hapi');
 const Joi = require('@hapi/joi');
 const md5 = require('md5');
 const axios = require('axios');
+const { boomify } = require('boom');
 
 const users = {
     hugo: {
@@ -65,14 +66,19 @@ const init = async () => {
         handler: async (request, h) => {
 			const { method, url, payload, headers } = request.payload;
 			console.log('Incoming request 🔮');
-			const resp = await axios({
-				method,
-				url,
-				data: payload,
-				headers,
-			});
-			console.log('Request answered  🎉');
-            return resp;
+			try {
+				const resp = await axios({
+					method,
+					url,
+					data: { ...payload },
+					headers,
+				});
+				console.log('Request answered  🎉');
+				return resp.data;
+			} catch (e) {
+				console.log('Request error 😨');
+				return boomify(e);
+			}
         }
     });
     await server.start();
